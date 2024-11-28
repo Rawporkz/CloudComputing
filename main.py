@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import mysql.connector
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from mysql.connector import Error
 
 app = FastAPI()
@@ -22,11 +22,11 @@ def get_db_connection():
 # Data model for a student
 class Student(BaseModel):
     name: str
-    address: str = None  # Optional field, default to None
-    city: str = None     # Optional field, default to None
-    state: str = None    # Optional field, default to None
-    email: EmailStr
-    phone_number: str = None  # Optional field, default to None
+    address: str = None
+    city: str = None     
+    state: str = None   
+    email: str          
+    phone_number: str = None 
 
 # Add a new student
 @app.post("/students/")
