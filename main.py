@@ -113,3 +113,8 @@ def list_students():
     finally:
         cursor.close()
         connection.close()
+
+# Health check endpoint
+@app.get("/")
+def list_students():
+    return {"status": "OK"}
