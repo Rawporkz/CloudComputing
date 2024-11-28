@@ -1,7 +1,6 @@
 from fastapi import FastAPI, HTTPException
 import mysql.connector
 from pydantic import BaseModel, EmailStr
-from typing import Optional
 from mysql.connector import Error
 
 app = FastAPI()
@@ -15,7 +14,6 @@ def get_db_connection():
             password="XYZ-University123",
             database="students_db",
             ssl_disabled=True,
-
         )
         return connection
     except Error as e:
@@ -24,11 +22,11 @@ def get_db_connection():
 # Data model for a student
 class Student(BaseModel):
     name: str
-    address: Optional[str] = None
-    city: Optional[str] = None
-    state: Optional[str] = None
+    address: str = None  # Optional field, default to None
+    city: str = None     # Optional field, default to None
+    state: str = None    # Optional field, default to None
     email: EmailStr
-    phone_number: Optional[str] = None
+    phone_number: str = None  # Optional field, default to None
 
 # Add a new student
 @app.post("/students/")
